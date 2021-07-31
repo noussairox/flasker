@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% if user_name  %}
+    <h1>User added</h1>
+    {% for our_name in our_names %}
+    {{ our_name.id }}-{{ our_name.name }}<br>    
+    {% endfor %}
+    {% else %}
+    <h1>User List:</h1>
+    <br>
+    <div class="shadow-lg p-3 mb-5 bg-body rounded">
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        {{ form.names.label(class="form-label") }}
+        {{ form.names(class="form-control") }}
+        <br>
+        {{ form.submit(class="btn btn-success btn-lg") }}
+    </form>
+</div>
+    <br><br><br>
+    <table class="table table-striped">
+{% for our_name in our_names %}
+<tr>
+    <tbody>
+        <tr>
+          <th scope="row">{{ our_name.id }}</th>
+          <td>{{ our_name.names }}</td>
+        </tr>
+</tr>
+{% endfor %}
+
+    {% endif %}
+
+{% endblock content %}
